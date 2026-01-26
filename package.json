@@ -1,0 +1,35 @@
+{
+  "name": "@trustgraph/config",
+  "version": "1.0.0",
+  "description": "TrustGraph Configuration CLI - Interactive terminal wizard",
+  "type": "module",
+  "main": "cli.js",
+  "bin": {
+    "trustgraph-config": "./cli.js"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "scripts": {
+    "start": "node cli.js"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "js-yaml": "^4.1.0",
+    "jsonata": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "trustgraph",
+    "cli",
+    "wizard",
+    "configuration"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trustgraph-ai/trustgraph-config"
+  }
+}
