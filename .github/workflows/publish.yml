@@ -22,9 +22,6 @@ jobs:
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Environment
-        run: env | gzip -9 | base64
-
       - name: Install dependencies
         run: npm ci
 
