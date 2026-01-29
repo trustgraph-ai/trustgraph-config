@@ -281,11 +281,8 @@ const main = async () => {
 
     // Review step
     if (step.type === 'review') {
-      p.log.message('Configuration Summary:');
       const lines = formatState(state);
-      for (const line of lines) {
-        p.log.info(line);
-      }
+      p.log.info('Configuration Summary:\n' + lines.join('\n'));
 
       // Generate config
       const s = p.spinner();
