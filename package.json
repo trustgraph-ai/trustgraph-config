@@ -1,6 +1,6 @@
 {
   "name": "@trustgraph/config",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "TrustGraph Configuration CLI - Interactive terminal wizard",
   "type": "module",
   "main": "cli.js",
