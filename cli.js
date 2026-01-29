@@ -268,6 +268,7 @@ const main = async () => {
   p.log.info(flowData.flow.title);
 
   const state = {};
+  const history = []; // Track human-readable question/answer pairs
   let currentStepId = flowData.flow.start;
 
   // Walk through steps
@@ -281,7 +282,7 @@ const main = async () => {
 
     // Review step
     if (step.type === 'review') {
-      const lines = formatState(state);
+      const lines = history.map(h => `  ${h.question} ${h.answer}`);
       p.log.info('Configuration Summary:\n' + lines.join('\n'));
 
       // Generate config
@@ -361,6 +362,19 @@ const main = async () => {
     // Save to state
     if (step.state_key) {
       setValue(state, step.state_key, value);
+
+      // Record human-readable question/answer
+      const input = step.input || {};
+      let displayValue;
+      if (input.type === 'select') {
+        const opt = input.options.find(o => o.value === value);
+        displayValue = opt?.label ?? value;
+      } else if (input.type === 'toggle') {
+        displayValue = value ? 'Yes' : 'No';
+      } else {
+        displayValue = String(value);
+      }
+      history.push({ question: step.title, answer: displayValue });
     }
 
     // Find next step
