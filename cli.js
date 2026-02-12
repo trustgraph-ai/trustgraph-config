@@ -109,6 +109,13 @@ const promptStep = async (step) => {
   const type = input.type || 'select';
 
   if (type === 'select') {
+    // Auto-select if only one option
+    if (input.options.length === 1) {
+      const opt = input.options[0];
+      p.log.info(`${step.title} ${opt.label}`);
+      return opt.value;
+    }
+
     const options = input.options.map(opt => ({
       value: opt.value,
       label: opt.label + (opt.recommended ? ' (Recommended)' : ''),
