@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 import * as p from '@clack/prompts';
-import { writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import yaml from 'js-yaml';
 import jsonata from 'jsonata';
 import { parseArgs } from 'util';
 
+const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf-8'));
 const DEFAULT_API_BASE = 'https://config-svc.app.trustgraph.ai/api';
 
 // Parse command line arguments
@@ -319,6 +320,7 @@ const main = async () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'User-Agent': `trustgraph-config/${pkg.version}`,
             'X-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
           body: JSON.stringify(config.templates),
