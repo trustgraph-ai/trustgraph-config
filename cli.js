@@ -317,7 +317,10 @@ const main = async () => {
       try {
         const response = await fetch(config.api_url, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone,
+          },
           body: JSON.stringify(config.templates),
         });
 
