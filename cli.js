@@ -316,7 +316,7 @@ const main = async () => {
       s2.start('Downloading...');
 
       try {
-        const response = await fetch(config.api_url, {
+        const response = await fetch(apiBase + '/' + config.api_path, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
